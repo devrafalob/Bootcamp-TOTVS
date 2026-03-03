@@ -1,19 +1,47 @@
-#soma
-print(1+2)
-#subtração
-print(2-1)
-#divisão 
-print(3/3)
-#divisao inteira
-print(5//2)
-#multiplicação
-print(2*2)
-#exponenciacao
-print(3**2)
-#modulo/sobra de uma divisao
-print(20%3)
+quantidade_alunos = int(input("Quantos alunos? "))
+i = 0
+aprovados = 0
+reprovados = 0
+media_turma = 0
+aluno_maior_media = ""
+aluno_menor_media = ""
 
-produto_1 = 10
-produto_2 = 20
+while quantidade_alunos != i:
+    i+=1
+    notas = []
+    maior_media = 0
+    menor_media = 10
 
-print(produto_1 + produto_2 - 10.2)
+    nome = input("Nome: ")
+    for a in range(1,4):
+        notas.append(int(input("Notas: ")))
+
+    media = (notas[0] + notas[1] + notas[2])/3
+    
+    media_turma += media
+    
+    print("Média do aluno {}".format(media))
+    if media >= 7:
+        print("Aprovado")
+        aprovados += 1
+    elif 5<= media < 7:
+        print("Prova Final")
+    else:
+        print("Reprovado")
+        reprovados += 1
+    
+    if quantidade_alunos == 1:
+        aluno_menor_media = aluno_maior_media = nome
+    elif media < menor_media:
+        aluno_menor_media = nome
+    else:
+        aluno_maior_media = nome
+        
+
+media_turma/=quantidade_alunos
+
+print("Numero de aprovados {}".format(aprovados))
+print("Numero de reprovados {}".format(reprovados))
+print("Média da turma {}".format(media_turma))
+print("Aluno com maior media {}".format(aluno_maior_media))
+print("Aluno com menor media {}".format(aluno_menor_media))
