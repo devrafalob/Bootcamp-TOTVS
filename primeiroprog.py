@@ -5,7 +5,9 @@ reprovados = 0
 media_turma = 0
 
 def calcular_media(n1, n2, n3) -> int:
+    global media_turma
     media = (n1+n2+n3)/3
+    media_turma += media
     return media
 
 def situacao(media:int):
@@ -20,12 +22,10 @@ def situacao(media:int):
         print("Reprovado")
         reprovados += 1
 
-def calcular_media_turma(media):
+def calcular_media_turma():
     global quantidade_alunos
     global media_turma
-    media_turma += media
     media_turma /= quantidade_alunos
-    return media_turma
 
 while quantidade_alunos != i:
     i+=1
@@ -36,10 +36,10 @@ while quantidade_alunos != i:
     nota_2 = int(input("Notas: "))
     nota_3 = int(input("Notas: "))
 
-    calcular_media_turma(calcular_media(nota_1, nota_2, nota_3))
     situacao(calcular_media(nota_1, nota_2, nota_3))
-    
 
+    if i == quantidade_alunos:
+        calcular_media_turma()
 
 print("Numero de aprovados {}".format(aprovados))
 print("Numero de reprovados {}".format(reprovados))
