@@ -8,29 +8,32 @@ menor_media = None
 aluno_maior_media = ""
 aluno_menor_media = ""
 
-def calcular_media(n1, n2, n3, nome_aluno) -> int:
-    global media_turma
+#retirar global das funções e que cada função retorne valores
+def calcular_media(n1, n2, n3) -> float:
     media = (n1+n2+n3)/3
-    ranking_media(media, nome_aluno)
-    media_turma += media
     return media
 
-def situacao(media:int):
-    global aprovados
-    global reprovados
-    if media >= 7:
-        print("Aprovado")
-        aprovados += 1
-    elif 5 <= media < 7:
-        print("Prova Final")
-    else:
-        print("Reprovado")
-        reprovados += 1
+def somatorio_media(media)-> float: 
+    media_turma += media
+    return media_turma
 
-def calcular_media_turma():
-    global quantidade_alunos
-    global media_turma
+def situacao(media) -> str:
+    if media >= 7:
+        return "Aprovado"
+    elif 5 <= media < 7:
+        return "Prova Final"
+    else:
+        return "Reprovado"
+    
+def contador_situaçao(situacao, contador):
+    if situacao == "Aprovado":
+        return contador + 1
+    elif situacao == "Reprovado":
+        return contador + 1
+
+def calcular_media_turma()->float:
     media_turma /= quantidade_alunos
+    return media_turma
 
 def ranking_media(media, nome_aluno):
     global aluno_maior_media
@@ -50,8 +53,7 @@ def ranking_media(media, nome_aluno):
         menor_media = media
 
 
-while quantidade_alunos != i:
-    i+=1
+for i in range(quantidade_alunos):
     notas = []
 
     nome = input("Nome: ")
@@ -59,9 +61,12 @@ while quantidade_alunos != i:
     nota_2 = int(input("Notas: "))
     nota_3 = int(input("Notas: "))
 
-    situacao(calcular_media(nota_1, nota_2, nota_3, nome))
+    media = calcular_media(nota_1, nota_2, nota_3)
+    ranking_media(media, nome)
+    contador_situaçao(situacao(media))
+    somatorio_media(media)
 
-    if i == quantidade_alunos:
+    if range == quantidade_alunos:
         calcular_media_turma()
 
 print("Numero de aprovados {}".format(aprovados))
