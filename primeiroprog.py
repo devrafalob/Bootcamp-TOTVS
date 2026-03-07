@@ -7,7 +7,6 @@ menor_media = None
 aluno_maior_media = ""
 aluno_menor_media = ""
 
-#retirar global das funções e que cada função retorne valores
 def calcular_media(n1, n2, n3) -> float:
     media = (n1+n2+n3)/3
     return media
@@ -20,23 +19,17 @@ def situacao(media) -> str:
     else:
         return 0, 1
 
-def ranking_media(media, nome_aluno):
-    global aluno_maior_media
-    global aluno_menor_media
-    global maior_media
-    global menor_media
+#retirar global das funções e que cada função retorne valores
+def ranking_media(media, nome_aluno, maior_media, menor_media, aluno_maior_media, aluno_menor_media):
     if maior_media is None:
-        aluno_maior_media = nome_aluno
-        aluno_menor_media = nome_aluno
-        maior_media = media
-        menor_media = media
+        return media, media, nome, nome
     elif media > maior_media:
         aluno_maior_media = nome_aluno
         maior_media = media
     elif media < menor_media:
         aluno_menor_media= nome_aluno
         menor_media = media
-
+    return maior_media, menor_media, aluno_maior_media, aluno_menor_media
 
 for i in range(quantidade_alunos):
     nome = input("Nome: ")
@@ -51,6 +44,7 @@ for i in range(quantidade_alunos):
     inc_aprovado, inc_reprovado = situacao(media)
     aprovados += inc_aprovado
     reprovados += inc_reprovado
+    
 
     media_turma += media
         
