@@ -44,7 +44,14 @@ for i in range(quantidade_alunos):
     inc_aprovado, inc_reprovado = situacao(media)
     aprovados += inc_aprovado
     reprovados += inc_reprovado
-    
+    maior_media, menor_media, aluno_maior_media, aluno_menor_media = ranking_media(
+                                                                            media,
+                                                                            nome,
+                                                                            maior_media,
+                                                                            menor_media,
+                                                                            aluno_maior_media,
+                                                                            aluno_menor_media
+                                                                        )
 
     media_turma += media
         
